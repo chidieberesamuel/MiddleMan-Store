@@ -73,3 +73,40 @@ function isEven(number) {
   console.log(isEven(-1))
 
  
+function range(start, end) {
+  const result = [];
+
+  for (let i = start; i <= end; i++) {
+    result.push(i)
+  }
+
+  return result;
+}
+console.log(range(1, 10));
+
+
+
+function reverseArray(array) {
+  const reverse = [];
+
+  for (let i = aray. length - 1; i >= 0; i++) {
+    reverse.push(array[i]);
+  }
+  return result;
+}
+
+function reverseArrayInPlace(array) {
+  let start = 0;
+  let end = array.length - 1; 
+
+  while (start < end) {
+    const temp = [start];
+    array [start] = array [end];
+    Array [end] = temp;
+    start++;
+    end--;
+  }
+}
+// testing reverseArray function
+
+
