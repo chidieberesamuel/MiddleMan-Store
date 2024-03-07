@@ -110,3 +110,8 @@ function reverseArrayInPlace(array) {
 // testing reverseArray function
 
 
+const array = [[1,2],[3,4],[5,6]];
+const flattenedArray = array.reduce((accumulator, currentArray) =>
+accumulator.concat(currentArray), []);
+
+console.log(flattenedArray);
