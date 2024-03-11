@@ -1,117 +1,86 @@
-for (let i = 0; i < 8; i++) {
-  let line = ' ';
-  for (let j = 0; j < i; j++) {
-    line += '#';
-  }
-  console.log(line);
+function Vector(x, y) {
+  this.x = x;
+  this.y = y;
 }
 
+Vector.prototype.plus = function(vector) {
+  var newX = this.x + vector.x;
+  var newY = this.y + vector.y;
+  return new Vector(newX, newY);
+};
 
-const size = 8;
+Vector.prototype.minus = function(vector) {
+  var newX = this.x - vector.x;
+  var newY = this.y - vector.y;
+  return new Vector(newX, newY);
+};
 
-for (let row = 0; row < size; row++) {
-  let line = '';
-
-  for (let col = 0; col < size; col++) {
-    if ((row + col) % 2 === 0) {
-      line += '#';
-    } else {
-      line += ' ';
-    }
+Object.defineProperty(Vector.prototype, 'length', {
+  get: function() {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
   }
+});
 
-  console.log(line);
+var vector1 = new Vector(3, 4);
+var vector2 = new Vector(1, 2);
+
+var sumVector = vector1.plus(vector2);
+console.log(sumVector);
+
+var diffVector = vector1.minus(vector2);
+console.log(diffVector);
+
+console.log(vector1.length);
+console.log(vector2.length);
+
+
+function stretchCell(inner, width, height) {
+  this.inner = inner;
+  this.widt = width;
+  this.height = height;
 }
 
+stretchCell.prototype.minwidth = function() {
+  return Math.max(this.width, this.inner.minwidth());
+};
 
+stretchCell.prototype.minheight = function() {
+  return Math.max(this.height, this.inner.minheight());
+};
 
-function printfarmInventory(goat, meat) {
-  var goatString = String (goat);
-  while (goatString . length < 3)
-   goatString = "0" + goatString;
-  console.log(goatString + "goat");
-  var meatString = String (meat);
-  while (meatString . length < 3)
-   meatString = "0" + meatString;
-  console.log(meatString + "meat"); 
-}
+stretchCell.prototype.draw = function(width, height) {
+  return this.inner.draw(width, this.height);
+};
 
-printfarmInventory(7, 11);
-
-
-function min(b, c) {
-  return Math.min(b, c);
-}
-
-console.log(min(4, 6));
-
-
-
-function isEven(number) {
-  if (number === 0) {
-    return true;
-
+var innerCell = {
+  minwidth: function() {return 3; },
+  minheight: function() {return 3; },
+  draw: function(width, height) {
+    return Array(height).fill(Array(width).fill("X").join("")).j
   }
-  else if (number === 1) {
-    return false;
-  }
-  else if (number < 0) {
-    return isEven(-number);
-  }
+};
+
+var stretchCell = new stretchCell(innerCell,5, 3);
+console.log(stretchCell.minwidth());
+console.log(stretchCell.minheight());
+console.log(stretchCell.draw(5, 3));
 
 
-  if (number < 2) {
-    return isEven(number + 2);
-  }
-
-  return isEven(number - 2);
-  }
 
 
-  console.log(isEven(50));
-  console.log(isEven(75));
-  console.log(isEven(-1))
+
+
+
+
+
+
+
+
+
+
+
+
 
  
-function range(start, end) {
-  const result = [];
-
-  for (let i = start; i <= end; i++) {
-    result.push(i)
-  }
-
-  return result;
-}
-console.log(range(1, 10));
 
 
-
-function reverseArray(array) {
-  const reverse = [];
-
-  for (let i = aray. length - 1; i >= 0; i++) {
-    reverse.push(array[i]);
-  }
-  return result;
-}
-
-function reverseArrayInPlace(array) {
-  let start = 0;
-  let end = array.length - 1; 
-
-  while (start < end) {
-    const temp = [start];
-    array [start] = array [end];
-    Array [end] = temp;
-    start++;
-    end--;
-  }
-}
-// testing reverseArray function
-
-
-const array = [[1,2],[3,4],[5,6]];
-const flattenedArray = array.reduce((accumulator, currentArray) =>
-accumulator.concat(currentArray), []);
-
-console.log(flattenedArray);
