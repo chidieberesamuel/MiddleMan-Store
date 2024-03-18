@@ -69,18 +69,50 @@ console.log(stretchCell.draw(5, 3));
 
 
 
+// function withBoxUnlock(){
+//   var mainBox = {
+//     unlocked: function () {
+//       this.unlock = true;
+//     },
+//     locked: function () {
+//       this.unlock = false;
+//     },
+//     unlock: true,
+//     getValue: [],
+//     display(){
+//       if (this.unlock) throw "UNLOCKED";
+//         return this.getValue;
+//     }
+//   }
+//   }
+
+
+//   console.log(unlock) 
 
 
 
 
+const testStrings = [
+  'The car is faster than expected  '
+];
 
+// Test each regular expression against the test strings
+const regVales = [
+  /ca[rt]/,
+  /pr?op/,
+  /fer(ret|ry|rari)/,
+  /\b\w+ious\b/,
+  /\s[.,:;]/,
+  /\b\w{7,}\b/,
+  /\b(?!.*e)\w+\b/,
+];
 
-
-
-
-
-
-
- 
-
+regVales.forEach((regex, index) => {
+  console.log(`Regular expression ${index + 1}: ${regex}`);
+  testStrings.forEach((str) => {
+    const result = regex.test(str);
+    console.log(`"${str}" - Match found: ${result}`);
+  });
+  console.log('---');
+});
 
